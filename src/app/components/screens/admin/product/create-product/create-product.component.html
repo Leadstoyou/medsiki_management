@@ -1,0 +1,100 @@
+<div class="container">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <!-- Tên sản phẩm -->
+      <div class="form-group">
+        <label for="productName">Tên sản phẩm:<span class="required">*</span></label>
+        <input
+          type="text"
+          id="productName"
+          class="form-control"
+          formControlName="title"
+          placeholder="Nhập tên sản phẩm"
+        />
+      </div>
+  
+      <!-- Giới thiệu -->
+      <div class="form-group">
+        <label for="description">Giới thiệu:<span class="required">*</span></label>
+        <textarea
+          id="description"
+          class="form-control"
+          formControlName="description"
+          rows="4"
+          placeholder="Nhập giới thiệu sản phẩm"
+        ></textarea>
+      </div>
+  
+      <!-- Giá cá nhân/gia đình -->
+      <div class="form-group">
+        <label>Options:</label>
+        <div class="option-group">
+          <div>
+            <label for="individualPrice">Giá cá nhân:<span class="required">*</span></label>
+            <input
+              type="number"
+              id="individualPrice"
+              class="form-control"
+              formControlName="individualPrice"
+              placeholder="Nhập giá cho cá nhân"
+            />
+          </div>
+          <div>
+            <label for="familyPrice">Giá gia đình:<span class="required">*</span></label>
+            <input
+              type="number"
+              id="familyPrice"
+              class="form-control"
+              formControlName="familyPrice"
+              placeholder="Nhập giá cho gia đình"
+            />
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <div class="option-group">
+          <div>
+            <label for="individualDiscountPrice">Giá giảm giá cá nhân:</label>
+            <input
+              type="number"
+              id="individualDiscountPrice"
+              class="form-control"
+              formControlName="individualDiscountPrice"
+              placeholder="Nhập giá giảm giá cho cá nhân"
+            />
+          </div>
+          <div>
+            <label for="familyDiscountPrice">Giá giảm giá gia đình:</label>
+            <input
+              type="number"
+              id="familyDiscountPrice"
+              class="form-control"
+              formControlName="familyDiscountPrice"
+              placeholder="Nhập giá giảm giá cho gia đình"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="thumbnail">Thumbnail (chỉ chọn ảnh): <span class="required">*</span></label>
+        <input
+          type="file"
+          id="thumbnail"
+          class="form-control"
+          (change)="onThumbnailSelected($event)"
+          accept="image/*"
+        />
+      </div>
+      
+      <!-- Hiển thị xem trước ảnh -->
+      <div *ngIf="thumbnailBase64" class="thumbnail-preview">
+        <p>Ảnh xem trước:</p>
+        <img [src]="thumbnailBase64" alt="Thumbnail Preview" />
+      </div>
+      <!-- Nút thêm sản phẩm -->
+      <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">
+        Thêm sản phẩm
+      </button>
+    </form>
+  </div>
+  

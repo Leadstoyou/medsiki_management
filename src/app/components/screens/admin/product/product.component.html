@@ -1,0 +1,52 @@
+<nz-card nzTitle="Product" class="rounded-md max-w-full">
+  <div class="flex float-right pb-3">
+    <button nz-button nzType="primary" (click)="openCreateModal()">Add +</button>
+  </div>
+  <app-table
+    #dataTable
+    [data]="tableData.data"
+    [pageSize]="tableData.pageSize"
+    [pageIndex]="tableData.pageIndex"
+    [totalItem]="tableData.totalItem"
+    [tableConfig]="tableConfig"
+    [height]="'400px'"
+    [isLoading]="isLoading"
+    (onSearch)="onSearch($event)"
+    [customCell]="{ thumbnail, type, action, options, price, discountPrice }"
+    externalClass="js-tb"
+    parentClass="inner-content"
+  ></app-table>
+</nz-card>
+
+<ng-template #thumbnail let-data="$data">
+  <div>
+    <img [src]="data.thumbnail" class="w-full h-full object-cover" alt="Course Image" />
+  </div>
+</ng-template>
+
+<ng-template #type let-data="$data">
+  <span>{{ getTypeDescription(data.type) }}</span>
+</ng-template>
+<ng-template #price let-data="$data">
+  <div class="flex flex-col justify-start items-start">
+    <div class="h-1/2 border-b border-black">{{ data.individualPrice }}</div>
+    <div class="h-1/2">{{ data.familyPrice }}</div>
+  </div>
+</ng-template>
+<ng-template #discountPrice let-data="$data">
+  <div class="flex flex-col justify-start items-start">
+    <div class="h-1/2 border-b border-black">{{ data.individualDiscountPrice }}</div>
+    <div class="h-1/2">{{ data.familyDiscountPrice }}</div>
+  </div>
+</ng-template>
+<ng-template #options let-data="$data">
+  <div class="flex flex-col justify-start items-start">
+    <div class="h-1/2 border-b border-black">Cá Nhân</div>
+    <div class="h-1/2">Gia Đình</div>
+  </div>
+</ng-template>
+<ng-template #action let-data="$data">
+  <div class="flex gap-2">
+    <span class="cursor-pointer" nz-icon nzType="edit" nzTheme="outline" (click)="openEditModal(data)"></span>
+  </div>
+</ng-template>

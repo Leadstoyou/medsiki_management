@@ -1,0 +1,4 @@
+<div [style.width]="width" class="img-fragment">
+  <nz-skeleton-element *ngIf="isLoading" nzType="image" [nzActive]="true"></nz-skeleton-element>
+  <ng-content class="fragment-content" *ngIf="!isLoading" [select]="content"></ng-content>
+</div>

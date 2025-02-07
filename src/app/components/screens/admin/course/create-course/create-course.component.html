@@ -1,0 +1,92 @@
+<nz-card nzTitle="Create Course" class="rounded-md max-w-full">
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+      <!-- Title -->
+      <div class="mb-4">
+        <label for="title" class="block font-semibold">Title</label>
+        <input nz-input formControlName="title" id="title" placeholder="Enter course title" />
+        <div *ngIf="courseForm.get('title')?.invalid && courseForm.get('title')?.touched" class="text-red-500">
+          Title is required.
+        </div>
+      </div>
+  
+      <!-- Description -->
+      <div class="mb-4">
+        <label for="description" class="block font-semibold">Description</label>
+        <textarea
+          nz-input
+          rows="4"
+          formControlName="description"
+          id="description"
+          placeholder="Enter course description"
+        ></textarea>
+      </div>
+  
+      <!-- Price -->
+      <div class="mb-4">
+        <label for="price" class="block font-semibold">Price</label>
+        <input nz-input type="number" formControlName="price" id="price" placeholder="Enter course price" />
+        <div *ngIf="courseForm.get('price')?.invalid && courseForm.get('price')?.touched" class="text-red-500">
+          Price is required and must be greater than 0.
+        </div>
+      </div>
+  
+      <!-- Discount Price -->
+      <div class="mb-4">
+        <label for="discountPrice" class="block font-semibold">Discount Price</label>
+        <input
+          nz-input
+          type="number"
+          formControlName="discountPrice"
+          id="discountPrice"
+          placeholder="Enter discount price"
+        />
+      </div>
+  
+      <!-- Star -->
+      <div class="mb-4">
+        <label for="star" class="block font-semibold">Star</label>
+        <input
+          nz-input
+          type="number"
+          formControlName="star"
+          id="star"
+          placeholder="Enter star rating (1-5)"
+        />
+        <div *ngIf="courseForm.get('star')?.invalid && courseForm.get('star')?.touched" class="text-red-500">
+          Star rating must be between 1 and 5.
+        </div>
+      </div>
+  
+      <!-- Type -->
+      <div class="mb-4">
+        <label for="type" class="block font-semibold">Type</label>
+        <nz-select formControlName="type" id="type" placeholder="Select course type" class="w-48">
+          <nz-option *ngFor="let option of courseTypes" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
+        </nz-select>
+        <div *ngIf="courseForm.get('type')?.invalid && courseForm.get('type')?.touched" class="text-red-500">
+          Type is required.
+        </div>
+      </div>
+  
+      <!-- Thumbnail -->
+      <div class="mb-4">
+        <label for="thumbnail" class="block font-semibold">Thumbnail</label>
+        <nz-upload
+          [nzShowUploadList]="false"
+          [nzBeforeUpload]="beforeUpload"
+          (nzChange)="handleThumbnailChange($event)"
+        >
+          <button nz-button>
+            <i nz-icon nzType="upload"></i>
+            <span>Click to Upload</span>
+          </button>
+        </nz-upload>
+        <div *ngIf="thumbnailPreview" class="mt-4">
+          <img [src]="thumbnailPreview" alt="Thumbnail Preview" class="w-32 h-32 object-cover" />
+        </div>
+      </div>
+  
+      <button nz-button nzType="primary" [disabled]="courseForm.invalid">Submit</button>
+    </form>
+  </nz-card>
+  

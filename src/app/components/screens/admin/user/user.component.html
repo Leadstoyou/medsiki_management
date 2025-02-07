@@ -1,0 +1,83 @@
+<nz-card class="rounded-md max-w-full">
+    <app-fragment>
+      <div nz-row [nzGutter]="24">
+        <card-analytic
+          nz-col
+          nzXl="8"
+          nzLg="12"
+          class="w-full sm:mt-6 mt-4 xl:mt-0 custom-card"
+          [title]="'Total User'"
+          valueStyle="large-title"
+          [value]="tableData.totalItem.toString()"
+        >
+        </card-analytic>
+        <card-analytic
+          nz-col
+          nzXl="8"
+          nzLg="12"
+          class="w-full sm:mt-6 mt-4 xl:mt-0 custom-card"
+          [title]="'Active User'"
+          valueStyle="large-title"
+          [value]='activeUser'
+        >
+        </card-analytic>
+        <card-analytic
+          nz-col
+          nzXl="8"
+          nzLg="12"
+          class="w-full sm:mt-6 lg:mt-6 xl:mt-0 mt-4 custưom-card"
+          [title]="'Inactive User'"
+          valueStyle="large-title"
+          [value]='tableData.totalItem - activeUser'
+        >
+        </card-analytic>
+      </div>
+    </app-fragment>
+    <app-fragment>
+      <ng-template #error let-control>
+        <app-validation-error [control]="control"></app-validation-error>
+      </ng-template>
+    </app-fragment>
+    <app-table
+      #dataTable
+      [data]="tableData.data"
+      [pageSize]="tableData.pageSize"
+      [pageIndex]="tableData.pageIndex"
+      [totalItem]="tableData.totalItem"
+      [tableConfig]="tableConfig"
+      [height]="'400px'"
+      [isLoading]="isLoading"
+      (onSearch)="onSearch($event)"
+     
+      externalClass="js-tb"
+      parentClass="inner-content"
+    ></app-table>
+  </nz-card>
+  
+  <ng-template #fromPrefix>{{ 'common.from' | transloco }}</ng-template>
+  <ng-template #toPrefix>{{ 'common.to' | transloco }}</ng-template>
+  
+
+  
+  <ng-template #images let-data="$data">
+    <div>
+        <img 
+            [src]="data?.avatars?.length ? (url + '/' + data.avatars[0].imageUrl) : 'assets/images/logo.png'" 
+            class="w-full h-full object-cover" 
+            alt="User Image"
+        />
+    </div>
+  </ng-template>
+  
+  <ng-template #qualify let-data="$data">
+    <app-button
+      [ngClass]=" data.qualify? 'text-green-600 min-w-24' : 'text-red-500 min-w-24'"
+      variant="text"
+      [align]="'center'"
+      label="{{ data.qualify ? 'common.qualified' : 'common.qualifying' }}"
+    ></app-button>
+  </ng-template>
+  
+  <ng-template #dateOfBirth let-data="$data">
+    <div>{{ data.dateOfBirth | date: 'dd/MM/yyyy' }}</div>
+  </ng-template>

@@ -1,0 +1,37 @@
+<nz-card class="rounded-md max-w-full" [nzTitle]="'Course'" [nzExtra]="extraTemplate">
+  <ng-template #extraTemplate>
+    <button nz-button nzType="primary" (click)="openCreateModal()">Add +</button>
+  </ng-template>
+
+  <app-table
+    #dataTable
+    [data]="tableData.data"
+    [pageSize]="tableData.pageSize"
+    [pageIndex]="tableData.pageIndex"
+    [totalItem]="tableData.totalItem"
+    [tableConfig]="tableConfig"
+    [height]="'400px'"
+    [isLoading]="isLoading"
+    (onSearch)="onSearch($event)"
+    [customCell]="{ thumbnail, type, action }"
+    externalClass="js-tb"
+    parentClass="inner-content"
+  ></app-table>
+</nz-card>
+
+<ng-template #thumbnail let-data="$data">
+  <div>
+    <img [src]="data.thumbnail" class="w-full h-full object-cover" alt="Course Image" />
+  </div>
+</ng-template>
+<ng-template #type let-data="$data">
+  <span>{{ getTypeDescription(data.type) }}</span>
+</ng-template>
+<ng-template #action let-data="$data">
+
+  <div class="flex gap-2">
+    <span class="cursor-pointer" nz-icon nzType="import" nzTheme="outline" (click)="openCourseManageModal(data)"></span>
+    <span class="cursor-pointer" nz-icon nzType="edit" nzTheme="outline" (click)="openEditModal(data)"></span>
+  </div>
+
+</ng-template>

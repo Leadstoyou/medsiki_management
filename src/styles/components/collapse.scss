@@ -1,0 +1,18 @@
+@import '../variables';
+
+.ant-collapse {
+  .ant-collapse-item {
+    &.no-padding-header {
+      .ant-collapse-header {
+        padding: 0 !important;
+      }
+    }
+    &.no-padding-content {
+      .ant-collapse-content {
+        .ant-collapse-content-box {
+          padding: 0 !important;
+        }
+      }
+    }
+  }
+}

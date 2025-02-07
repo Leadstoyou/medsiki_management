@@ -1,0 +1,63 @@
+<div class="container">
+    <form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
+      <!-- Tiêu đề -->
+      <div class="form-group">
+        <label for="title">Tiêu đề:<span class="required">*</span></label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          formControlName="title"
+          placeholder="Nhập tiêu đề tin tức"
+        />
+      </div>
+  
+      <!-- Mô tả -->
+      <div class="form-group">
+        <label for="description">Mô tả:<span class="required">*</span></label>
+        <textarea
+          id="description"
+          class="form-control"
+          formControlName="description"
+          rows="4"
+          placeholder="Nhập mô tả tin tức"
+        ></textarea>
+      </div>
+  
+      <!-- Liên kết chuyển hướng -->
+      <div class="form-group">
+        <label for="redirectLink">Liên kết chuyển hướng:<span class="required">*</span></label>
+        <input
+          type="text"
+          id="redirectLink"
+          class="form-control"
+          formControlName="redirectLink"
+          placeholder="Nhập liên kết chuyển hướng"
+        />
+      </div>
+  
+      <!-- Thumbnail -->
+      <div class="form-group">
+        <label for="thumbnail">Thumbnail (chỉ chọn ảnh): <span class="required">*</span></label>
+        <input
+          type="file"
+          id="thumbnail"
+          class="form-control"
+          (change)="onThumbnailSelected($event)"
+          accept="image/*"
+        />
+      </div>
+      
+      <!-- Hiển thị xem trước ảnh -->
+      <div *ngIf="thumbnailBase64" class="thumbnail-preview">
+        <p>Ảnh xem trước:</p>
+        <img [src]="thumbnailBase64" alt="Thumbnail Preview" />
+      </div>
+  
+      <!-- Nút cập nhật tin tức -->
+      <button type="submit" class="btn btn-primary" [disabled]="newsForm.invalid">
+        Cập nhật tin tức
+      </button>
+    </form>
+  </div>
+  

@@ -1,0 +1,107 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import './mixins';
+@import './variables';
+
+.btn-edit {
+  mat-icon {
+    margin-right: 0 !important;
+  }
+}
+
+.title-page-container {
+  margin-bottom: 20px;
+  .title-page {
+    font-size: $large-font-title;
+    font-weight: $large-title-weight;
+  }
+}
+
+.default-title {
+  font-size: $default-font-title;
+  font-weight: $default-title-weight;
+}
+
+.default-text {
+  font-size: $default-font;
+  font-weight: $default-weight;
+}
+
+.default-text-bold {
+  font-size: $default-font;
+  font-weight: $default-title-weight;
+}
+
+.large-text {
+  font-size: $font-16;
+  font-weight: $default-weight;
+}
+
+.large-text-1xl {
+  font-size: $font-20;
+  font-weight: $default-weight;
+}
+
+.large-text-bold {
+  font-size: $font-16;
+  font-weight: $default-title-weight;
+}
+
+.large-text-bold-xl {
+  font-size: $font-18;
+  font-weight: $default-title-weight;
+}
+
+.large-title {
+  font-size: $large-font-title;
+  font-weight: $default-title-weight;
+}
+
+.link-container {
+  color: $primary-color;
+  font-weight: $default-title-weight;
+  cursor: pointer;
+}
+
+.text-link:hover {
+  color: $primary-color;
+  cursor: pointer;
+}
+
+.text-message {
+  color: $gray-600;
+  font-size: $font-16;
+}
+
+.input-message {
+  --tw-text-opacity: 1;
+  color: rgba(156, 163, 175, var(--tw-text-opacity));
+  font-size: 0.8rem;
+}
+
+.small-text {
+  font-size: $font-12;
+  font-weight: $default-weight;
+}
+
+.tinymce-content {
+  all: initial;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+tr {
+  &.highlight-red {
+    background-color: #ffebee !important;
+
+    td {
+      color: #d32f2f;
+    }
+  }
+}
+
+.highlight-red {
+  background-color: #ffebee !important;
+  color: #d32f2f;
+}

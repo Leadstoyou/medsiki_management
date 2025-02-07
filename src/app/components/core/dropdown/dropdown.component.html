@@ -1,0 +1,50 @@
+<button
+  nz-button
+  class="flex items-center min-h-[40px]"
+  [ngClass]="ngClass"
+  nz-dropdown
+  [nzClickHide]="type === 'single' ? true : false"
+  [nzTrigger]="trigger"
+  [nzDropdownMenu]="menu"
+>
+  {{ title | transloco }} <span nz-icon nzType="down"></span>
+</button>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu class="min-w-36">
+    <ng-container *ngFor="let item of data.items; let i = index">
+      <li *ngIf="!item.children; else hasChild" nz-menu-item [nzDisabled]="item.disabled" (click)="onSelect(item, i)">
+        <span *ngIf="data.isShowCheckbox; else notShowCheckBox">
+          <span
+            class="flex gap-1 items-center"
+            nz-checkbox
+            [(ngModel)]="item.checked"
+            ><span *ngIf="item.antIcon" nz-icon [nzType]="item.antIcon" nzTheme="outline"></span
+            >{{ item.title | transloco }}
+          </span>
+        </span>
+        <ng-template #notShowCheckBox>
+          <span class="flex gap-1 items-center" >
+            <span *ngIf="item.antIcon" nz-icon [nzType]="item.antIcon" nzTheme="outline"></span
+            >{{ item.title | transloco }}
+          </span>
+        </ng-template>
+      </li>
+      <ng-template #hasChild>
+        <li nz-submenu [nzDisabled]="item.disabled" [nzTitle]="'&nbsp;' + (item.title | transloco)">
+          <ul>
+            <li *ngFor="let child of item.children" nz-menu-item [nzDisabled]="child.disabled">
+              <span class="flex gap-1 items-center" (click)="onSelect(child, i)">
+                <span *ngIf="child.antIcon" nz-icon [nzType]="child.antIcon" nzTheme="outline"></span
+                >{{ child.title | transloco }}
+              </span>
+            </li>
+          </ul>
+        </li>
+      </ng-template>
+    </ng-container>
+    <ng-container *ngIf="type === 'multiple'">
+      <li nz-menu-divider></li>
+      <li nz-menu-item class="flex justify-center" (click)="onClearAll()">{{ 'common.clearAll' | transloco }}</li>
+    </ng-container>
+  </ul>
+</nz-dropdown-menu>

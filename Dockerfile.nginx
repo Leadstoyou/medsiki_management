@@ -1,0 +1,6 @@
+FROM nginx:alpine AS nginx
+
+COPY nginx-proxy.conf /etc/nginx/conf.d/default.conf
+COPY src/ssl/fpt-capstone /etc/ssl_main/fpt-capstone/
+
+EXPOSE 80

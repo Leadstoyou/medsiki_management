@@ -1,0 +1,53 @@
+<ul nz-menu [nzMode]="mode" [class]="class" [ngClass]="{ 'menu-disabled': disabled }">
+  <ng-container *ngFor="let item of data">
+    <ng-container>
+      <ng-template #submenu>
+        <span class="flex items-center" [ngClass]="{ 'font-bold': item.isBold }">
+          <mat-icon
+            *ngIf="item.icon"
+            class="submenu-icon mr-1"
+            [svgIcon]="item.icon"
+            nz-tooltip="{{ item.label | transloco }}"
+          ></mat-icon>
+          <mat-icon *ngIf="item.matIcon" class="submenu-icon mr-1" nz-tooltip="{{ item.label | transloco }}">{{
+            item.matIcon
+          }}</mat-icon>
+          <span *ngIf="!isCollapsed" class="menu-title" nz-tooltip="{{ item.label | transloco }}">{{
+            item.label | transloco
+          }}</span>
+        </span>
+      </ng-template>
+
+      <li
+        *ngIf="item.children"
+        nz-submenu
+        [nzTitle]="submenu"
+        [nzDisabled]="disabled"
+        [nzOpen]="item.isOpen"
+        class="menu-item"
+        [ngClass]="{ 'menu-item-active': isSelectChildren(item), 'hide-expand-icon': isCollapsed }"
+      >
+        <app-menu
+          *ngIf="!isCollapsed"
+          [data]="item.children"
+          [ngClass]="item.class"
+          [disabled]="disabled"
+          [mode]="mode"
+        ></app-menu>
+      </li>
+
+      <li
+        #menuItem
+        *ngIf="!item.children"
+        nz-menu-item
+        (click)="redirectTo(item.routerLink)"
+        [nzDisabled]="disabled"
+        [nzSelected]="isActive(item)"
+        class="menu-item"
+        [ngClass]="{ 'menu-item-child-active': isActive(item) }"
+      >
+        <div class="flex-center" *ngTemplateOutlet="submenu"></div>
+      </li>
+    </ng-container>
+  </ng-container>
+</ul>

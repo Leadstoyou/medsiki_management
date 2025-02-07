@@ -1,0 +1,107 @@
+<nz-header class="absolute top-0 left-0 right-0 z-50">
+  <div class="container rounded-md px-6">
+    <div class="flex justify-between w-full h-14">
+      <!-- Left side -->
+      <div class="flex items-center">
+        <button
+          nz-button
+          nz-dropdown
+          [nzDropdownMenu]="menuGroup"
+          *ngIf="isSupervisor"
+          (click)="loadingGroup()"
+          nzTrigger="click"
+        >
+          {{ currentGroup || 'Groups' }}
+          <span nz-icon nzType="down"></span>
+        </button>
+        <nz-dropdown-menu #menuGroup="nzDropdownMenu">
+          <ul nz-menu>
+            <app-fragment>
+              <li
+                nz-menu-item
+                *ngFor="let g of listGroups"
+                (click)="selectGroup(g)"
+                [class.active]="g.semester + '_' + g.groupCode === suffixGroup"
+              >
+                {{ g.semester.semester + '_' + g.groupCode }}
+              </li>
+            </app-fragment>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+      <!--/ Left side -->
+
+      <!-- Right side -->
+      <div class="flex items-center gap-4">
+        <!-- <app-notification></app-notification> -->
+        <!-- Language dropdown -->
+        <div
+          class="flex cursor-pointer"
+          nz-dropdown
+          nzTrigger="click"
+          [nzDropdownMenu]="language"
+          nzPlacement="bottomRight"
+        >
+          <div class="flex items-center justify-center">
+            <img src="assets/images/flag-{{ currentLanguage }}.png" />
+          </div>
+        </div>
+        <nz-dropdown-menu #language="nzDropdownMenu">
+          <ul nz-menu>
+            <div class="px-2">
+              <li
+                [class.active]="currentLanguage === 'vi'"
+                class="flex-items"
+                nz-menu-item
+                (click)="handleChangeLang('vi')"
+              >
+                <img width="24px" height="24px" src="assets/images/flag-vi.png" />
+                {{ 'common.vietnamese' | transloco }}
+              </li>
+            </div>
+            <div class="px-2">
+              <li
+                [class.active]="currentLanguage === 'en'"
+                class="flex-items"
+                nz-menu-item
+                (click)="handleChangeLang('en')"
+              >
+                <img width="24px" height="24px" src="assets/images/flag-en.png" />
+                {{ 'common.english' | transloco }}
+              </li>
+            </div>
+          </ul>
+        </nz-dropdown-menu>
+        <!--/ Language dropdown -->
+
+        <!-- User dropdown -->
+        <div class="flex cursor-pointer" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+          <div class="sm:flex sm:flex-col sm:items-end hidden mr-3">
+            <span class="font-semibold opacity-85">{{ user.name }}</span>
+            <span class="opacity-70">{{ roleName }}</span>
+          </div>
+          <div class="flex items-center justify-center">
+            <img [src]="userAvatar" class="w-10 h-10 rounded-full" />
+            <!-- <mat-icon class="w-8 h-8 opacity-70" [svgIcon]="'user-circle'"></mat-icon> -->
+          </div>
+        </div>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <div class="px-2">
+              <li [class.active]="currentUrl === '/user/user-profile'" nz-menu-item (click)="redirectToSetting()">
+                My Profile
+              </li>
+            </div>
+            <nz-divider class="my-2"></nz-divider>
+            <div class="px-2" (click)="logout()">
+              <li nz-menu-item>{{ 'common.logout' | transloco }}</li>
+            </div>
+          </ul>
+        </nz-dropdown-menu>
+        <!--/ User dropdown -->
+      </div>
+      <!--/ Right side -->
+    </div>
+  </div>
+  <div display="none" id="userAvatar" (click)="getUserAvatar()"></div>
+</nz-header>

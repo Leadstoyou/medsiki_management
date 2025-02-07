@@ -1,0 +1,57 @@
+<nz-badge [nzCount]="unreadCount" nzSize="small" class="cursor-pointer" (click)="toggleNotificationList()">
+  <span nz-icon nzType="bell" nzTheme="outline" class="text-2xl"></span>
+</nz-badge>
+
+<nz-drawer
+  [nzVisible]="isDrawerVisible"
+  class="h-full"
+  nzTitle="Notifications"
+  nzPlacement="right"
+  (nzOnClose)="closeNotificationList()"
+  [nzBodyStyle]="{ padding: '0' }"
+>
+  <div class="relative h-full" *nzDrawerContent>
+    <!-- Back to top button -->
+    <div *ngIf="showBackToTop" class="fixed bottom-4 right-4 z-10 flex flex-col items-center">
+      <button class="scroll-to-top" [class.visible]="showBackToTop" (click)="scrollToTop()" aria-label="Scroll to top">
+        <nz-badge *ngIf="newNotificationsCount > 0" [nzCount]="newNotificationsCount" class="new-notifications-badge">
+          <i nz-icon nzType="arrow-up" nzTheme="outline"></i>
+        </nz-badge>
+        <i *ngIf="newNotificationsCount === 0" nz-icon nzType="arrow-up" nzTheme="outline"> </i>
+      </button>
+    </div>
+
+    <cdk-virtual-scroll-viewport itemSize="150" class="h-full w-full">
+      <nz-list class="p-0">
+        <nz-list-item
+          *cdkVirtualFor="let item of ds; trackBy: trackById"
+          [class.bg-gray-100]="!item.read"
+          class="hover:bg-gray-100 cursor-pointer p-4 transition-colors duration-200 h-[150px]"
+        >
+          <nz-skeleton *ngIf="!item" [nzAvatar]="true" [nzParagraph]="{ rows: 1 }"></nz-skeleton>
+          <nz-list-item-meta *ngIf="item" [nzAvatar]="avatarTemplate" [nzDescription]="descriptionTemplate">
+            <ng-template #avatarTemplate>
+              <nz-avatar
+                [nzText]="item.actor.name.slice(0, 1)"
+                class="td-avatar"
+                [ngStyle]="{ 'background-color': generateColor(item.actor.email) }"
+              >
+              </nz-avatar>
+            </ng-template>
+            <ng-template #descriptionTemplate>
+              <div class="text-[13px] text-gray-600">{{ formatUserName(item.actor.name) }}</div>
+            </ng-template>
+            <nz-list-item-meta-title>
+              <a class="text-[13px] font-medium text-gray-800"
+                >{{ item.action === NOTIFY_ACTION.REQUEST_CREATED ? item.group.groupCode + ': ' : ''
+                }}{{ genMessage(item.message, item) }}</a
+              >
+              <div class="text-[12px] text-gray-500 mt-0.5">{{ item.createdAt | timeago: live }}</div>
+            </nz-list-item-meta-title>
+          </nz-list-item-meta>
+          <span *ngIf="!item.read" class="flex-shrink-0 h-2 w-2 rounded-full bg-blue-600"> </span>
+        </nz-list-item>
+      </nz-list>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</nz-drawer>

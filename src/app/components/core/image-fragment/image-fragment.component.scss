@@ -1,0 +1,24 @@
+@import '../../../../styles/variables';
+
+.img-fragment {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 100%;
+
+}
+
+::ng-deep .ant-skeleton-element .ant-skeleton-image {
+  width: 100%;
+  height: 100%;
+}
+
+::ng-deep .ant-skeleton-element .ant-skeleton-image-svg {
+  width: 100%;
+  height: 100%;
+}
+
+::ng-deep .ant-skeleton-element {
+width: 100%;
+  height: 100%;
+}
