@@ -64,7 +64,7 @@ export class ChatComponent extends BaseComponent implements OnInit {
 
   getUserImage(userId: string): string {
     const user = this.listUser.find((user) => user.id === userId);
-    return user?.avatar ? `data:image/jpeg;base64, +${user?.avatar}` : 'assets/images/default-user-avatar.jpg';
+    return user?.avatar ? `data:image/jpeg;base64,${user?.avatar}` : 'assets/images/default-user-avatar.jpg';
   }
 
   getUserName(userId: string): string {
