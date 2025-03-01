@@ -39,7 +39,7 @@ export class CourseManageComponent extends BaseComponent implements OnInit {
   }
 
   videos: Video[] = [];
-  currentVideo: Video = { title: '', url: '', isPreview: false ,index : 0 };
+  currentVideo: Video = { title: '', url: '', isPreview: false, index: 0 };
   selectedFile: File | null = null;
   isUploading = false;
   editMode = false; // Thêm flag editMode để xác định trạng thái chỉnh sửa
@@ -71,7 +71,8 @@ export class CourseManageComponent extends BaseComponent implements OnInit {
     try {
       const videoUrl = await this.cloudinaryService.uploadVideo(this.selectedFile);
       this.currentVideo.url = videoUrl;
-      this.currentVideo.index = this.videos[this.videos.length - 1].index + 1;
+      this.currentVideo.index = this.videos.length > 0 ? this.videos[this.videos.length - 1].index + 1 : 0;
+
       await this.courseService.addVideoToCourse(this.data.id, this.currentVideo);
       this.videos.push({ ...this.currentVideo });
 
@@ -87,8 +88,9 @@ export class CourseManageComponent extends BaseComponent implements OnInit {
 
   // Hàm xử lý chỉnh sửa video
   editVideo(index: number) {
-    this.currentVideo = { ...this.videos[index] };
-    this.editMode = true;
+    this.componentService.toast.error('developing');
+    // this.currentVideo = { ...this.videos[index] };
+    // this.editMode = true;
   }
 
   // Hàm xử lý submit chỉnh sửa video
@@ -116,7 +118,7 @@ export class CourseManageComponent extends BaseComponent implements OnInit {
 
   // Hàm reset form
   private resetForm() {
-    this.currentVideo = { title: '', url: '', isPreview: false , index : 0 };
+    this.currentVideo = { title: '', url: '', isPreview: false, index: 0 };
     this.selectedFile = null; // Đặt lại giá trị của selectedFile
     if (this.videoFileInput) {
       this.videoFileInput.nativeElement.value = ''; // Reset giá trị của input file

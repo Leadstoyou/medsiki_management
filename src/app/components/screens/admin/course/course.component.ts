@@ -118,7 +118,7 @@ export class CourseComponent extends BaseComponent implements OnInit {
       footer: null,
       title: 'Upload Report',
       closable: true,
-      width: 800,
+      width: 1000,
       data: {
         data: data,
       },

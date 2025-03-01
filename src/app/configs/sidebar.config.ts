@@ -21,23 +21,23 @@ const Admin: IMenu[] = [
   },
   {
     label: 'Course',
-    matIcon: 'group-user',
+    matIcon: 'school',
     routerLink: '/admin/course',
   },
   {
     label: 'Product',
     routerLink: '/admin/product',
-    matIcon: 'date_range',
+    matIcon: 'shopping_cart',
   },
   {
     label: 'Chat',
     routerLink: '/admin/chat',
-    matIcon: 'date_range',
+    matIcon: 'chat',
   },
   {
     label: 'News',
     routerLink: '/admin/news',
-    matIcon: 'date_range',
+    matIcon: 'article',
   },
 ];
 

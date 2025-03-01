@@ -109,7 +109,7 @@ export const tableAdminUser: ITableConfig[] = [
   {
     title: 'email',
     key: 'email',
-    width: '100px',
+    width: '150px',
     sort: true,
   },
   {

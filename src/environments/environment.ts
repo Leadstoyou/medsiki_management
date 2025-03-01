@@ -11,13 +11,13 @@ export const environment = {
   baseDomain: location.hostname,
   TINY_MCE_API_KEY: 'cckdt047mysl0hut717e97kcjnr4cyynjx7m0i8xwx5osgw3',
   firebase: {
-    apiKey: process.env.FIREBASE_API_KEY || '',
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN || '',
-    projectId: process.env.FIREBASE_PROJECT_ID || '',
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET || '',
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || '',
-    appId: process.env.FIREBASE_APP_ID || '',
-    measurementId: process.env.FIREBASE_MEASUREMENT_ID || '',
+    apiKey: 'AIzaSyCMPdYmwzDgE0UZde6HV9rC3zB1r-rr1Lc',
+    authDomain: 'support-medsiki.firebaseapp.com',
+    projectId: 'support-medsiki',
+    storageBucket: 'support-medsiki.firebasestorage.app',
+    messagingSenderId: '400684593618',
+    appId: '1:400684593618:web:93b3b386b2efb85d81180b',
+    measurementId: 'G-SH4YYXH5FS',
   },
 };
 

@@ -35,7 +35,7 @@ export class ChatComponent extends BaseComponent implements OnInit {
     this.chatService.getAllUserChat().subscribe({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       next: (data: any) => {
-        this.userChats = [...data];
+        this.userChats = ([...data]).reverse();
         this.cdr.detectChanges();
       },
     });
@@ -64,7 +64,7 @@ export class ChatComponent extends BaseComponent implements OnInit {
 
   getUserImage(userId: string): string {
     const user = this.listUser.find((user) => user.id === userId);
-    return user?.avatar ? user?.avatar : 'assets/images/default-user-avatar.jpg';
+    return user?.avatar ? `data:image/jpeg;base64, +${user?.avatar}` : 'assets/images/default-user-avatar.jpg';
   }
 
   getUserName(userId: string): string {
