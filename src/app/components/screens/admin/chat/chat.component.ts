@@ -35,7 +35,7 @@ export class ChatComponent extends BaseComponent implements OnInit {
     this.chatService.getAllUserChat().subscribe({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       next: (data: any) => {
-        this.userChats = ([...data]).reverse();
+        this.userChats = ([...data]).sort((a, b) => b.timestamp - a.timestamp);
         this.cdr.detectChanges();
       },
     });
