@@ -90,13 +90,13 @@ export class ChatComponent extends BaseComponent implements OnInit {
     return currentMessageDate.toDateString() !== previousMessageDate.toDateString();
   }
   ngAfterViewChecked(): void {
-    // Automatically scroll to the bottom after each update
     this.scrollToBottom();
   }
   private scrollToBottom(): void {
     try {
       this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error('Error scrolling to bottom:', err);
     }
   }
