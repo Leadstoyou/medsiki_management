@@ -16,6 +16,7 @@ import { CreateProductComponent } from './product/create-product/create-product.
 import { EditProductComponent } from './product/edit-product/edit-product.component';
 import { CreateNewsComponent } from './news/create-news/create-news.component';
 import { EditNewsComponent } from './news/edit-news/edit-news.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { EditNewsComponent } from './news/edit-news/edit-news.component';
     EditProductComponent,
     CreateNewsComponent,
     EditNewsComponent,
+    PaymentComponent
   ],
   imports: [CommonModule, AdminRoutingModule, ShareModule],
 })

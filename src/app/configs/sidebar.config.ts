@@ -18,6 +18,11 @@ const Admin: IMenu[] = [
     label: 'User',
     matIcon: 'group-user',
     routerLink: '/admin/user',
+  },  
+  {
+    label: 'Payment',
+    matIcon: 'credit_card',
+    routerLink: '/admin/payment',
   },
   {
     label: 'Course',
