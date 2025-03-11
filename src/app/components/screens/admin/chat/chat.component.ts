@@ -81,8 +81,8 @@ export class ChatComponent extends BaseComponent implements OnInit {
   }
 
   shouldShowDateSeparator(index: any): boolean {
-    if (!this.messages || this.messages.length === 0) return false; // Kiểm tra dữ liệu hợp lệ
-    if (index === 0) return true; // Luôn hiển thị separator cho tin nhắn đầu tiên
+    if (!this.messages || this.messages.length === 0) return false; 
+    if (index === 0) return true; 
   
     const currentMessageDate = new Date(this.messages[index].timestamp);
     const previousMessageDate = new Date(this.messages[index - 1].timestamp);
