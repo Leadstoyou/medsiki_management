@@ -264,6 +264,51 @@ export const tableAdminNews: ITableConfig[] = [
     sort: false,
   },
 ];
+
+export const tableAdminPayments: ITableConfig[] = [
+  {
+    title: 'id',
+    key: 'id',
+    width: '50px',
+    sort: false,
+  },
+  {
+    title: 'title',
+    key: 'title',
+    width: '75px',
+    sort: false,
+  },
+  {
+    title: 'quantity',
+    key: 'quantity',
+    width: '30px',
+    sort: false,
+  },
+  {
+    title: 'total price',
+    key: 'totalPrice',
+    width: '50px',
+    sort: false,
+  },
+  {
+    title: 'address',
+    key: 'address',
+    width: '70px',
+    sort: false,
+  },
+  {
+    title: 'status',
+    key: 'status',
+    width: '50px',
+    sort: false,
+  },
+  {
+    title: 'action',
+    key: 'action',
+    width: '150px',
+    sort: false,
+  },
+];
 export const tableGroupSupervisor: ITableConfig[] = [
   {
     title: 'common.table.header.groupCode',
@@ -597,6 +642,7 @@ export const TABLE_CONFIG = {
   TABLE_ADMIN_COURSE: tableAdminCourse,
   TABLE_ADMIN_PRODUCT: tableAdminProduct,
   TABLE_ADMIN_NEWS: tableAdminNews,
+  TABLE_ADMIN_PAYMENTS: tableAdminPayments,
   TABLE_GROUP_DETAIL_MANAGER_2: tableGroupDetailManager2,
   TABLE_GROUP_DETAIL_SUPERVISOR: tableGroupDetailSupervisor,
   TABLE_GROUP_SUPERVISOR: tableGroupSupervisor,

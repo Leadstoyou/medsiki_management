@@ -1,0 +1,7 @@
+.ellipsis-text {
+  width: 100px; /* 🔥 Đặt chiều rộng tối đa */
+  white-space: nowrap; /* 🔥 Không xuống dòng */
+  overflow: hidden; /* 🔥 Ẩn phần bị tràn */
+  text-overflow: ellipsis; /* 🔥 Thêm dấu "..." nếu quá dài */
+  display: inline-block; /* 🔥 Giúp CSS hoạt động chính xác */
+}

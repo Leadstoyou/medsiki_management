@@ -17,6 +17,7 @@ import { EditProductComponent } from './product/edit-product/edit-product.compon
 import { CreateNewsComponent } from './news/create-news/create-news.component';
 import { EditNewsComponent } from './news/edit-news/edit-news.component';
 import { PaymentComponent } from './payment/payment.component';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,6 @@ import { PaymentComponent } from './payment/payment.component';
     EditNewsComponent,
     PaymentComponent
   ],
-  imports: [CommonModule, AdminRoutingModule, ShareModule],
+  imports: [CommonModule, AdminRoutingModule, ShareModule,NzSliderModule],
 })
 export class AdminModule {}
